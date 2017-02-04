@@ -25,7 +25,8 @@
             android:name=".login.view.LoginActivity"
             android:label="@string/log_in">
         </activity>
-        <activity android:name=".profile.view.ProfileActivity">
+        <activity android:name=".profile.view.ProfileActivity"
+                  android:label="@string/profile">
         </activity>
     </application>
 
