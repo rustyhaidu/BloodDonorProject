@@ -11,7 +11,12 @@ import android.util.Base64;
 import android.util.Log;
 
 import com.claudiu.blooddonor.R;
+import com.claudiu.blooddonor.firebase.FireBaseService;
+import com.claudiu.blooddonor.firebase.FirebaseLogic;
+import com.claudiu.blooddonor.launcher.interactor.LauncherInteractorImpl;
+import com.claudiu.blooddonor.launcher.navigators.LauncherNavigators;
 import com.claudiu.blooddonor.launcher.presenter.LauncherPresenter;
+import com.claudiu.blooddonor.launcher.presenter.LauncherPresenterImpl;
 import com.claudiu.blooddonor.login.view.LoginActivity;
 import com.facebook.FacebookSdk;
 
@@ -26,15 +31,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        mLauncherPresenter =
+                new LauncherPresenterImpl(
+                        new LauncherInteractorImpl(
+                                new FirebaseLogic(
+                                        new FireBaseService())),
+                        new LauncherNavigators(this));
+        // TODO Dagger
         printKeyHash(this);
-      //  mLauncherPresenter.onAppLaunch();
-
-
-        Intent intent = new Intent();
-        intent.setClass(MainActivity.this, LoginActivity.class);
-        startActivity(intent);
+        mLauncherPresenter.onAppLaunch();
     }
 
 }
