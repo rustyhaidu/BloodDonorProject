@@ -10,6 +10,15 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
     }
     buildTypes {
         release {
@@ -33,7 +42,8 @@ dependencies {
     compile 'com.google.firebase:firebase-storage:10.0.1'
     compile 'com.firebase:firebase-client-android:2.5.2+'
     testCompile 'junit:junit:4.12'
+    testCompile 'org.mockito:mockito-all:2.0.2-beta'
+    testCompile 'org.assertj:assertj-core:3.6.1'
 }
-
 
 apply plugin: 'com.google.gms.google-services'
